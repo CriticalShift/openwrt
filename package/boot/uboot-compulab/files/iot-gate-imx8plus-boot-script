@@ -1,0 +1,12 @@
+echo starting openwrt ...
+setenv xtrace yes
+setenv fdt_addr 0x43000000
+setenv loadaddr 0x40480000
+setenv fdt_high 0x8fffffff
+setenv kernel_img iot-gate-imx8plus-kernel.bin
+setenv fdt_img iot-gate-imx8plus.dtb
+setenv initrd_high 0xffffffffffffffff
+setenv bootargs "root=/dev/mmcblk${mmcdev}p2 rw rootwait rootfstype=squashfs,f2fs noinitrd console=ttymxc1,115200"
+load mmc $mmcdev $loadaddr $kernel_img
+load mmc $mmcdev $fdt_addr $fdt_img
+booti $loadaddr - $fdt_addr

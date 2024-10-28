@@ -47,6 +47,7 @@ define Build/imx-append-kernel
 	mkdir -p $@.tmp && \
 	cp $(IMAGE_KERNEL) $@.tmp && \
 	cp $(DTS_DIR)/$(1).dtb $@.tmp && \
+	cp $(STAGING_DIR_IMAGE)/boot.scr $@.tmp && \
 	make_ext4fs -J -L kernel -l "$(IMX_SD_KERNELPART_SIZE)M" "$@.kernel.part" "$@.tmp" && \
 	dd if=$@.kernel.part >> $@ && \
 	rm -rf $@.tmp && \
