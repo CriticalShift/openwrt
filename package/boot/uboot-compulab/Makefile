@@ -12,28 +12,49 @@ PKG_VERSION:=u-boot-compulab_v2023.04
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/compulab-yokneam/u-boot-compulab.git
+PKG_SOURCE_URL:=https://github.com/CriticalShift/u-boot-compulab.git
 PKG_SOURCE_VERSION:=u-boot-compulab_v2023.04
-PKG_MIRROR_HASH:=fcc5a15e539fdeca098cd96cc700ffa3013673bc71c5a62ed2104e8233a0bef3
+PKG_MIRROR_HASH:=skip
 
 include $(INCLUDE_DIR)/u-boot.mk
 include $(INCLUDE_DIR)/package.mk
 
-define U-Boot/compulab-imx8mp
-  NAME:=imx8mplus lpddr4 board
-  BUILD_TARGET:=imx
-  UBOOT_IMAGE:=flash.bin
-  BUILD_SUBTARGET:=imx8
-  UBOOT_CONFIG:=iot-gate-imx8plus
-  ENV_NAME:=iot-gate-imx8plus
-  BOOT_SCRIPT:=iot-gate-imx8plus
-  DTB_NAME:=iot-gate-imx8plus.dtb
-  ENV_SIZE:=0x4000
+define U-Boot/compulab_iot-gate-imx8mplus
+	NAME:=iot-gate-imx8mplus lpddr4 board
+	BUILD_TARGET:=imx
+	BUILD_SUBTARGET:=imx8
+	VARIANT=compulab_iot-gate-imx8mplus
+	UBOOT_IMAGE:=flash.bin
+	UBOOT_CONFIG:=iot-gate-imx8plus
+	ENV_NAME:=iot-gate-imx8plus
+	BOOT_SCRIPT:=iot-gate-imx8plus
+	DTB_NAME:=iot-gate-imx8plus.dtb
+	ENV_SIZE:=0x4000
+	DEPENDS:=+firmware-imx
+endef
+
+define U-Boot/compulab_ucm-imx8m-plus
+	NAME:=ucm-imx8m-plus lpddr4 board
+	BUILD_TARGET:=imx
+	BUILD_SUBTARGET:=imx8
+	VARIANT=compulab_ucm-imx8m-plus
+	UBOOT_IMAGE:=flash.bin
+	UBOOT_CONFIG:=ucm-imx8m-plus
+	ENV_NAME:=ucm-imx8m-plus
+	BOOT_SCRIPT:=ucm-imx8m-plus
+	DTB_NAME:=ucm-imx8m-plus.dtb
+	ENV_SIZE:=0x4000
+	DEPENDS:=+firmware-imx
 endef
 
 
 UBOOT_TARGETS := \
-	compulab-imx8mp
+	compulab_iot-gate-imx8mplus \
+	compulab_ucm-imx8m-plus
+
+# define Build/Prepare
+# 	$(CP) $(STAGING_DIR_IMAGE)/imx-mkimage/iMX8M/lpddr*.bin $(PKG_BUILD_DIR)
+# endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR_IMAGE)/imx-mkimage/iMX8M/

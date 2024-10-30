@@ -1,0 +1,19 @@
+echo "Critical Shift: Spear OpenWRT boot script v0.1"
+
+setenv xtrace yes
+setenv kernel_img ucm-imx8m-plus-kernel.bin
+setenv fdt_img ucm-imx8m-plus.dtb
+
+setexpr rootpart ${distro_bootpart} + 1 # root on 'next' partition from u-boot
+part uuid ${devtype} ${devnum}:${rootpart} uuid
+
+setenv bootargs console=ttymxc1,115200 root=PARTUUID=${uuid} rootfstype=squashfs,f2fs rootwait
+
+echo "Loading Linux kernel into RAM..."
+load ${devtype} ${devnum}:${distro_bootpart} ${loadaddr} ${kernel_img}
+
+echo "Loading Spear device tree into RAM..."
+load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr} ${fdt_img}
+
+echo "Booting Spear OpenWRT Linux kernel..."
+booti $loadaddr - $fdt_addr

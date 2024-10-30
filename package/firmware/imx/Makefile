@@ -48,16 +48,9 @@ define Build/Prepare
 	$(CP) $(DL_DIR)/$(FIRMWARE_IMX_BIN) $(PKG_BUILD_DIR)
 	chmod a+x $(PKG_BUILD_DIR)/$(FIRMWARE_IMX_BIN)
 	cd $(PKG_BUILD_DIR) && ./$(FIRMWARE_IMX_BIN) --auto-accept
-
-	$(CP) $(DL_DIR)/$(FIRMWARE_SENTINEL_BIN) $(PKG_BUILD_DIR)
-	chmod a+x $(PKG_BUILD_DIR)/$(FIRMWARE_SENTINEL_BIN)
-	cd $(PKG_BUILD_DIR) && ./$(FIRMWARE_SENTINEL_BIN) --auto-accept
 endef
 
 define Build/Compile
-endef
-
-define Build/InstallDev
 endef
 
 $(eval $(call BuildPackage,firmware-imx))
