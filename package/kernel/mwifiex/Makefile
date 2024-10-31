@@ -36,6 +36,8 @@ define KernelPackage/moal
   TITLE:=NXP WIFI MOAL DRIVER
   HIDDEN:=1
   DEPENDS:=+kmod-mlan
+  AUTOLOAD:=$(call AutoProbe,mlan moal)
+  MODPARMS.moal:=mod_para=nxp/ublox-fw-para.conf
   FILES:= $(PKG_BUILD_DIR)/mxm_wifiex/wlan_src/moal.ko
 endef
 

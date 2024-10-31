@@ -72,7 +72,8 @@ define Device/ucm-imx8m-plus
 	ENV_NAME:=ucm-imx8m-plus
 	DEVICE_PACKAGES += \
 		firmware-imx \
-		u-boot-compulab
+		u-boot-compulab \
+		kmod-mwifiex-iw612-sdio
 	DEVICE_DTS := compulab/ucm-imx8m-plus
 	IMAGE/sdcard.img := \
 		imx-compile-dtb $$(DEVICE_DTS) | \
