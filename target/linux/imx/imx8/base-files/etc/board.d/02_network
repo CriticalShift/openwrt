@@ -3,14 +3,16 @@
 #
 
 . /lib/functions/uci-defaults.sh
-
-board=$(board_name)
+. /lib/functions.sh
+. /lib/functions/system.sh
 
 board_config_update
 
+board=$(board_name)
+
 case "$board" in
 compulab,ucm-imx8m-plus)
-	ucidef_set_interfaces_lan_wan 'eth0' 'wwan0'
+	ucidef_set_interface_lan "eth0 uap0"
 	;;
 esac
 
