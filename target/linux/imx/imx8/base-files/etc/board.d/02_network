@@ -13,6 +13,7 @@ board=$(board_name)
 case "$board" in
 compulab,ucm-imx8m-plus)
 	ucidef_set_interface_lan "eth0 uap0"
+	ucidef_set_interface_wan "wwan0"
 	;;
 esac
 

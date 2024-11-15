@@ -47,8 +47,12 @@ define Device/ucm-imx8m-plus
 	ENV_NAME:=ucm-imx8m-plus
 	DEVICE_PACKAGES += \
 		firmware-imx \
-		u-boot-compulab \
-		kmod-mwifiex-iw612-sdio
+		u-boot-compulab_ucm-imx8m-plus \
+		kmod-mwifiex-iw612-sdio \
+		kmod-usb-net-sierrawireless \
+		kmod-usb-net-qmi-wwan \
+		kmod-usb-serial-qualcomm \
+		kmod-usb-net-cdc-mbim
 	DEVICE_DTS := compulab/ucm-imx8m-plus-shield-evk
 	IMAGE/sdcard.img := \
 		imx-compile-dtb $$(DEVICE_DTS) | \
