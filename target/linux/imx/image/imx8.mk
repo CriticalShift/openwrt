@@ -48,7 +48,7 @@ define Device/ucm-imx8m-plus
 	DEVICE_PACKAGES += \
 		firmware-imx \
 		u-boot-compulab_ucm-imx8m-plus \
-		kmod-mwifiex-iw612-sdio \
+		kmod-imx-w612-sdio \
 		kmod-usb-net-sierrawireless \
 		kmod-usb-net-qmi-wwan \
 		kmod-usb-serial-qualcomm \

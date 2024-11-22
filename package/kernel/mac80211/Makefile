@@ -68,6 +68,7 @@ config-y:= \
 	WLAN_VENDOR_INTERSIL \
 	WLAN_VENDOR_MARVELL \
 	WLAN_VENDOR_MEDIATEK \
+	WLAN_VENDOR_NXP \
 	WLAN_VENDOR_RALINK \
 	WLAN_VENDOR_REALTEK \
 	WLAN_VENDOR_RSI \
@@ -83,6 +84,7 @@ config-$(CONFIG_PACKAGE_MAC80211_MESH) += MAC80211_MESH
 
 include ath.mk
 include broadcom.mk
+include imx.mk
 include intel.mk
 include marvell.mk
 include ralink.mk
@@ -341,6 +343,7 @@ define Build/Patch
 	$(call PatchDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/mwl,mwl/)
 	$(call PatchDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/brcm,brcm/)
 	$(call PatchDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/rtl,rtl/)
+	$(call PatchDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/imx,imx/)
 	$(if $(QUILT),touch $(PKG_BUILD_DIR)/.quilt_used)
 endef
 
@@ -357,6 +360,7 @@ define Quilt/Refresh/Package
 	$(call Quilt/RefreshDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/mwl,mwl/)
 	$(call Quilt/RefreshDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/brcm,brcm/)
 	$(call Quilt/RefreshDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/rtl,rtl/)
+	$(call Quilt/RefreshDir,$(PKG_BUILD_DIR),$(PATCH_DIR)/imx,imx/)
 endef
 
 define Build/Compile
