@@ -6,7 +6,7 @@ config-$(call config_package,imx-w612-sdio) += NXP_IW612 IMX_MLAN IMX_MOAL
 define KernelPackage/imx-w612-sdio
 	$(call KernelPackage/mac80211/Default)
 	TITLE:=IMX W612 (SDIO) wireless support driver
-	DEPENDS+= +kmod-mmc +kmod-mac80211 +imx-wifi-firmware
+	DEPENDS+= +kmod-mmc +kmod-mac80211 +imx-wifi-firmware +@DRIVER_11AC_SUPPORT +@DRIVER_11AX_SUPPORT
 	FILES:= \
 		$(PKG_BUILD_DIR)/drivers/net/wireless/imx/mlan.ko \
 		$(PKG_BUILD_DIR)/drivers/net/wireless/imx/moal.ko

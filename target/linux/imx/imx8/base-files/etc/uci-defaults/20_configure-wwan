@@ -1,0 +1,9 @@
+uci -q batch << EOI
+set network.wan.proto='mbim'
+set network.wan.device='/dev/cdc-wdm0'
+set network.wan.apn='fast.t-mobile.com'
+set network.wan.auth='none'
+set network.wan.pdptype='ipv4v6'
+delete network.wan6
+commit network
+EOI

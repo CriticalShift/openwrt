@@ -49,10 +49,13 @@ define Device/ucm-imx8m-plus
 		firmware-imx \
 		u-boot-compulab_ucm-imx8m-plus \
 		kmod-imx-w612-sdio \
-		kmod-usb-net-sierrawireless \
 		kmod-usb-net-qmi-wwan \
 		kmod-usb-serial-qualcomm \
-		kmod-usb-net-cdc-mbim
+		kmod-usb-net-cdc-mbim \
+		mbim-utils \
+		qmi-utils \
+		umbim \
+		uqmi
 	DEVICE_DTS := compulab/ucm-imx8m-plus-shield-evk
 	IMAGE/sdcard.img := \
 		imx-compile-dtb $$(DEVICE_DTS) | \
