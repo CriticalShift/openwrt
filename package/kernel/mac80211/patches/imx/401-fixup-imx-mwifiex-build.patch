@@ -20,7 +20,7 @@
  obj-$(CPTCFG_WLAN_VENDOR_RALINK) += ralink/
 --- /dev/null
 +++ b/drivers/net/wireless/imx/Kconfig
-@@ -0,0 +1,36 @@
+@@ -0,0 +1,46 @@
 +# SPDX-License-Identifier: GPL-2.0-only
 +config WLAN_VENDOR_NXP
 +	bool "NXP devices"
@@ -57,9 +57,20 @@
 +	  This option enables the MOAL driver that is required by NXP mwifiex
 +	  (MOAL) based drivers. This driver must be included when building an
 +	  NXP/IMX wireless module.
++
++config IMX_MLAN_MFG_CMD_SUPPORT
++	bool "Compile driver with manufacturing mode enabled"
++	depends on IMX_MLAN
++	default n
++
++config IMX_MLAN_DFS_TEST_MODE
++	bool "Enable DFS testing mode"
++	depends on IMX_MLAN
++	default n
+\ No newline at end of file
 --- a/drivers/net/wireless/imx/Makefile
 +++ b/drivers/net/wireless/imx/Makefile
-@@ -16,675 +16,82 @@
+@@ -16,675 +16,86 @@
  #  this warranty disclaimer.
  #
  
@@ -70,14 +81,12 @@
 -endif
 +ccflags-y += \
 +	-DDEBUG_LEVEL1 \
-+	-DDFS_TESTING_SUPPORT \
 +	-DDUMP_TO_PROC \
 +	-DFPNUM='"92"' \
 +	-DIMX_SUPPORT \
 +	-DLINUX \
 +	-DMAC80211_SUPPORT \
 +	-DMAC80211_SUPPORT_UAP \
-+	-DMFG_CMD_SUPPORT \
 +	-DMLAN_64BIT \
 +	-DMULTI_CHAN_SUPPORT \
 +	-DOPENWRT \
@@ -93,6 +102,12 @@
 +	-DCONFIG_PROC_FS \
 +	-DSD9177 \
 +	-I$(src)
++
++ccflags-$(CPTCFG_IMX_MLAN_MFG_CMD_SUPPORT) += \
++	-DMFG_CMD_SUPPORT
++
++ccflags-$(IMX_MLAN_DFS_TEST_MODE) += \
++	-DDFS_TESTING_SUPPORT
 +
 +ccflags-y += \
 +	-Wno-implicit-fallthrough \
