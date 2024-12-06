@@ -59,10 +59,10 @@
 +	  NXP/IMX wireless module.
 --- a/drivers/net/wireless/imx/Makefile
 +++ b/drivers/net/wireless/imx/Makefile
-@@ -16,675 +16,81 @@
+@@ -16,675 +16,82 @@
  #  this warranty disclaimer.
  #
-
+ 
 -CONFIG_COMPATDIR=n
 -ifeq ($(CONFIG_COMPATDIR), y)
 -COMPATDIR=/lib/modules/$(KERNELVERSION_X86)/build/compat-wireless-3.2-rc1-1/include
@@ -90,6 +90,7 @@
 +	-DTASKLET_SUPPORT \
 +	-DUAP_CFG80211 \
 +	-DUAP_SUPPORT \
++	-DCONFIG_PROC_FS \
 +	-DSD9177 \
 +	-I$(src)
 +
@@ -141,13 +142,13 @@
 +	mlan/mlan_uap_ioctl.o \
 +	mlan/mlan_uap_cmdevent.o \
 +	mlan/mlan_uap_txrx.o
-
+ 
 -LD ?=		$(CROSS_COMPILE)ld
 -BACKUP=		/root/backup
 -YMD=		`date +%Y%m%d%H%M`
 +obj-$(CPTCFG_IMX_MLAN) += mlan.o
 +obj-$(CPTCFG_IMX_MOAL) += moal.o
-
+ 
 -#############################################################################
 -# Configuration Options
 -#############################################################################
@@ -177,7 +178,7 @@
 -CONFIG_PCIEIW624=n
 -CONFIG_USBIW624=n
 -CONFIG_PCIEAW693=n
-
+ 
 -
 -
 -# Debug Option
@@ -815,11 +816,11 @@
 @@ -160,7 +160,7 @@ Change log:
  #define MAX(a, b) ((a) > (b) ? (a) : (b))
  #endif
-
+ 
 -#define COMPAT_VERSION_CODE KERNEL_VERSION(0, 0, 0)
 +#define COMPAT_VERSION_CODE KERNEL_VERSION(6, 1, 110)
  #define CFG80211_VERSION_CODE MAX(LINUX_VERSION_CODE, COMPAT_VERSION_CODE)
-
+ 
  #define IMX_ANDROID_13 0
 --- a/drivers/net/wireless/imx/mlinux/moal_main.c
 +++ b/drivers/net/wireless/imx/mlinux/moal_main.c
@@ -912,7 +913,7 @@
 +++ b/drivers/net/wireless/imx/mlinux/moal_cfg80211.h
 @@ -131,7 +131,7 @@ int woal_cfg80211_change_virtual_intf(st
  int woal_cfg80211_set_wiphy_params(struct wiphy *wiphy, u32 changed);
-
+ 
  int woal_cfg80211_add_key(struct wiphy *wiphy, struct net_device *dev,
 -#if ((KERNEL_VERSION(6, 1, 0) <= LINUX_VERSION_CODE) || IMX_ANDROID_13)
 +#if ((KERNEL_VERSION(6, 1, 0) <= CFG80211_VERSION_CODE) || IMX_ANDROID_13)
@@ -921,7 +922,7 @@
  			  t_u8 key_index,
 @@ -141,7 +141,7 @@ int woal_cfg80211_add_key(struct wiphy *
  			  const t_u8 *mac_addr, struct key_params *params);
-
+ 
  int woal_cfg80211_del_key(struct wiphy *wiphy, struct net_device *dev,
 -#if ((KERNEL_VERSION(6, 1, 0) <= LINUX_VERSION_CODE) || IMX_ANDROID_13)
 +#if ((KERNEL_VERSION(6, 1, 0) <= CFG80211_VERSION_CODE) || IMX_ANDROID_13)
@@ -929,7 +930,7 @@
  #endif
  			  t_u8 key_index,
 @@ -217,7 +217,7 @@ int woal_cfg80211_set_channel(struct wip
-
+ 
  #if KERNEL_VERSION(2, 6, 37) < CFG80211_VERSION_CODE
  int woal_cfg80211_set_default_key(struct wiphy *wiphy, struct net_device *dev,
 -#if ((KERNEL_VERSION(6, 1, 0) <= LINUX_VERSION_CODE) || IMX_ANDROID_13)
