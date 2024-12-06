@@ -1,0 +1,7 @@
+uci set gpsd.core=gpsd
+uci set gpsd.core.device='/dev/ttymxc0'
+uci set gpsd.core.port='2947'
+uci set gpsd.core.listen_globally='0'
+uci set gpsd.core.disabled='0'
+
+uci commit gpsd
