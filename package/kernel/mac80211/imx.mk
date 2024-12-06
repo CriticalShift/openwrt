@@ -12,7 +12,8 @@ define KernelPackage/imx-w612-sdio
 		$(PKG_BUILD_DIR)/drivers/net/wireless/imx/moal.ko
 	AUTOLOAD:=$(call AutoProbe, mlan moal)
 	MODPARAMS.moal = \
-		drv_mode=2 \
+		drv_mode=0x3 \
+		cfg80211_wext=0xc \
 		fw_name=nxp/sd_w61x_v1.bin.se
 endef
 
