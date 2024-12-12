@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. /lib/functions.sh
+
+DEFAULT_SSID="Shield"
+DEFAULT_PASSWORD="shield_demo2025"
+
+uci -q batch <<EOI
+set wireless.radio0=wifi-device
+set wireless.radio0.type=mac80211
+set wireless.radio0.phy=mwiphy0
+set wireless.radio0.band=5g
+set wireless.radio0.htmode=VHT80
+set wireless.radio0.channel=auto
+set wireless.radio0.country=US
+set wireless.radio0.disabled=0
+
+set wireless.radio0_ap=wifi-iface
+set wireless.radio0_ap.mode=ap
+set wireless.radio0_ap.network=lan
+set wireless.radio0_ap.ssid=$DEFAULT_SSID
+set wireless.radio0_ap.encryption=psk2
+set wireless.radio0_ap.key=$DEFAULT_PASSWORD
+EOI
+
+uci -q commit wireless
