@@ -20,6 +20,9 @@ endef
 define Package/imx-wifi-firmware/install
 	$(INSTALL_DIR) $(1)/lib/firmware/nxp/
 	$(INSTALL_DATA) \
+		./files/wifi_mod_para.conf \
+		$(1)/lib/firmware/nxp
+	$(INSTALL_DATA) \
 		$(PKG_BUILD_DIR)/nxp/FwImage_IW612_SD/sd_w61x_v1.bin.se \
 		$(1)/lib/firmware/nxp
 	$(INSTALL_DATA) \
