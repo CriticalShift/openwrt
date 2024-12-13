@@ -55,7 +55,8 @@ define Device/ucm-imx8m-plus
 		mbim-utils \
 		qmi-utils \
 		umbim \
-		uqmi
+		uqmi \
+		gpsd
 	DEVICE_DTS := compulab/ucm-imx8m-plus-shield-evk
 	IMAGE/sdcard.img := \
 		imx-compile-dtb $$(DEVICE_DTS) | \
