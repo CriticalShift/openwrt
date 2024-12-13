@@ -15,12 +15,15 @@ set wireless.radio0.channel=auto
 set wireless.radio0.country=US
 set wireless.radio0.disabled=0
 
-set wireless.radio0_ap=wifi-iface
-set wireless.radio0_ap.mode=ap
-set wireless.radio0_ap.network=lan
-set wireless.radio0_ap.ssid=$DEFAULT_SSID
-set wireless.radio0_ap.encryption=psk2
-set wireless.radio0_ap.key=$DEFAULT_PASSWORD
+set wireless.default_radio0=wifi-iface
+set wireless.default_radio0.device='radio0'
+set wireless.default_radio0.mode=ap
+set wireless.default_radio0.network=lan
+set wireless.default_radio0.ssid=$DEFAULT_SSID
+set wireless.default_radio0.encryption=psk2
+set wireless.default_radio0.key=$DEFAULT_PASSWORD
 EOI
 
 uci -q commit wireless
+
+wifi reload
