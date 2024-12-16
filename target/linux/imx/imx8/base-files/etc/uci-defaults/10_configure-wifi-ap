@@ -25,5 +25,3 @@ set wireless.default_radio0.key=$DEFAULT_PASSWORD
 EOI
 
 uci -q commit wireless
-
-wifi reload
