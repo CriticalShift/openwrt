@@ -10,6 +10,7 @@ set network.wan.device='/dev/cdc-wdm0'
 set network.wan.apn=$DEFAULT_APN
 set network.wan.auth='none'
 set network.wan.pdptype='ipv4v6'
+set network.wan.disabled='1'
 delete network.wan6
 EOI
 
