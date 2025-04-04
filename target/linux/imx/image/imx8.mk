@@ -51,10 +51,7 @@ define Device/ucm-imx8m-plus
 		kmod-imx-w612-sdio \
 		kmod-usb-net-qmi-wwan \
 		kmod-usb-serial-qualcomm \
-		kmod-usb-net-cdc-mbim \
-		mbim-utils \
 		qmi-utils \
-		umbim \
 		uqmi \
 		gpsd
 	DEVICE_DTS := kform/shield
