@@ -2,7 +2,7 @@
 
 . /lib/functions.sh
 
-DEFAULT_APN="fast.t-mobile.com"
+DEFAULT_APN=""
 
 uci -q batch << EOI
 set network.wan.proto='mbim'

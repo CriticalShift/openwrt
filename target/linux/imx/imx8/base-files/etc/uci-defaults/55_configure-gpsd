@@ -6,7 +6,7 @@ GPS_DEVICE="/dev/ttymxc0"
 
 uci -q batch << EOI
 set gpsd.core.device=$GPS_DEVICE
-set gpsd.core.enabled='1'
+set gpsd.core.enabled='0'
 EOI
 
 uci -q commit gpsd
