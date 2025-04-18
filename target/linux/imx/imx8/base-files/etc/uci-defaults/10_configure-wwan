@@ -2,10 +2,10 @@
 
 . /lib/functions.sh
 
-DEFAULT_APN=""
+DEFAULT_APN="auto"
 
 uci -q batch << EOI
-set network.wan.proto='mbim'
+set network.wan.proto='qmi'
 set network.wan.device='/dev/cdc-wdm0'
 set network.wan.apn=$DEFAULT_APN
 set network.wan.auth='none'
