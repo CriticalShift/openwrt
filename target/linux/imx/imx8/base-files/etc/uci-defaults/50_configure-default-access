@@ -3,7 +3,7 @@
 . /lib/functions.sh
 
 # Allow SSH access via LAN devices
-uci set dropbear.cfg014dd4.Interface='lan'
+uci set dropbear.@dropbear[0].Interface='lan'
 uci -q commit dropbear
 
 # HTTPS redirect for LuCI
