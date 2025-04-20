@@ -26,12 +26,6 @@ define U-Boot/Default
 	ENV_SIZE:=0x4000
 endef
 
-define U-Boot/compulab_iot-gate-imx8mplus
-	NAME:=iot-gate-imx8mplus lpddr4 board
-	UBOOT_CONFIG:=iot-gate-imx8plus
-	DEPENDS:=+firmware-imx
-endef
-
 define U-Boot/compulab_ucm-imx8m-plus
 	NAME:=ucm-imx8m-plus lpddr4 board
 	DEPENDS:=+firmware-imx
@@ -40,7 +34,6 @@ endef
 
 
 UBOOT_TARGETS := \
-	compulab_iot-gate-imx8mplus \
 	compulab_ucm-imx8m-plus
 
 define Build/InstallDev

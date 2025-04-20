@@ -53,7 +53,6 @@ CONFIG_TARGET_imx_imx8=y
 # CONFIG_TARGET_MULTI_PROFILE is not set
 # CONFIG_TARGET_imx_imx8_Default is not set
 CONFIG_TARGET_imx_imx8_DEVICE_ucm-imx8m-plus=y
-# CONFIG_TARGET_imx_imx8_DEVICE_iot-gate-imx8plus is not set
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="imx"
@@ -1725,7 +1724,6 @@ CONFIG_NETJSON_MONITORING_IWINFO=y
 #
 # Boot Loaders
 #
-# CONFIG_PACKAGE_u-boot-compulab_iot-gate-imx8mplus is not set
 CONFIG_PACKAGE_u-boot-compulab_ucm-imx8m-plus=y
 # end of Boot Loaders
 
